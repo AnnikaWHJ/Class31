@@ -1,3 +1,18 @@
+var arr1 = ["this is a string",9,true,undefined,null]
+console.log(arr1)
+
+var arr2 = [["Priyanka",14],["Tripti",14],["Swati",13]]
+console.log(arr2[1][0])
+
+var arr3 = ["Shivani",15]
+arr2.push(arr3)
+console.log(arr2)
+arr2.pop(arr3)
+console.log(arr2)
+
+
+
+
 const Engine = Matter.Engine;
 const World= Matter.World;
 const Bodies = Matter.Bodies;
@@ -7,6 +22,7 @@ var engine, world;
 var box1, pig1,pig3;
 var backgroundImg,platform;
 var bird, slingshot;
+var gameState = "onSling"
 
 
 function preload() {
@@ -69,16 +85,20 @@ function draw(){
 }
 
 function mouseDragged(){
+    if(gameState !== "launched"){
     Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+    }
+   
 }
 
 
 function mouseReleased(){
     slingshot.fly();
+    gameState = "launched"
 }
 
 function keyPressed(){
     if(keyCode === 32){
-        slingshot.attach(bird.body);
+     //slingshot.attach(bird.body);
     }
 }
